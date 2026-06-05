@@ -1,25 +1,24 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
-import About from './components/About'
+import HomePage from './pages/HomePage'
+import ProjectsPage from './pages/ProjectsPage'
+import ContactPage from './pages/ContactPage'
+import { ThemeContext } from './context/ThemeContext'
 
 function App() {
-
-  const [isDark, setIsDark] = useState(
-    localStorage.getItem('isDark') === 'true'
-  )
-
-  useEffect(() => {
-    localStorage.setItem('isDark', isDark.toString())
-  }, [isDark])
+  const { isDark } = useContext(ThemeContext)
 
   return (
-      <div className={isDark ? 'dark' : 'light'}>
-      <button onClick={() => setIsDark(!isDark)}> 
-        {isDark ? 'Tryb jasny' : 'Tryb ciemny'}
-      </button>
+    <div className={isDark ? 'dark' : 'light'}>
       <Navbar />
-      <About name="Tomasz" description="Cześć! Jestem Tomasz, pasjonuję się tworzeniem stron internetowych i programowaniem. Mam doświadczenie w React, JavaScript i CSS. Lubię uczyć się nowych technologii i rozwijać swoje umiejętności." />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
     </div>
   )
 }

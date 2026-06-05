@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #104992;
+    color: white;
+    gap: 1rem;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin-left: auto;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,32 @@
+.projectsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    content: space-around;
+    gap: 1rem;
+}
+
+.projectCard{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+}
+
+.projectTitle{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.projectDescription{
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.projectLink{
+    display: inline-block;
+    margin-top: 10px;
+    color: #104992;
+    text-decoration: none;
+}

@@ -1,3 +1,5 @@
+import styles from './About.module.css'
+
 function About( {
     name,
     description,
@@ -6,10 +8,10 @@ function About( {
     description: string,
 }) {
     return (
-        <section>
+        <section className={styles.section}>
             <h2>O mnie</h2>
-            <p>{name}</p>
-            <p>{description}</p>
+            <h3 className={styles.name}>{name}</h3>
+            <p className={styles.description}>{description}</p>
         </section>
     );
 }
