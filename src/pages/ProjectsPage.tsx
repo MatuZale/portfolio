@@ -1,44 +1,58 @@
 import styles from './ProjectsPage.module.css'
+import { useEffect, useState } from 'react'
 
-interface Project {
-  id: number,
-  title: string,
-  description: string,
-  url?: string
+interface GitHubRepo {
+  id: number
+  name: string
+  description: string | null
+  html_url: string
+  language: string | null
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Portfolio",
-    description: "Moje osobiste portfolio, które pokazuje moje umiejętności i doświadczenie.",
-    url: "https://github.com/MatuZale/portfolio"
-  },
-  {
-    id: 2,
-    title: "Dashboard",
-    description: "Aplikacja do monitorowania danych i statystyk w czasie rzeczywistym."
-  }
-]
-
 function ProjectsPage() {
+
+  const [repos, setRepos] = useState<GitHubRepo[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/MatuZale/repos')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Nie można pobrać repozytoriów')
+        }
+        return response.json()
+      })
+      .then(data => {
+        setRepos(data)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) return <main><p>Ładowanie...</p></main>
+  if (error) return <main><p>Błąd: {error}</p></main>
+
   return (
     <main>
       <h2>Projekty</h2>
 
       <div className={styles.projectsContainer}>
-        {projects.map((project) => (
+        {repos.map((project) => (
           <div className={styles.projectCard} key={project.id}>
-            <h3 className={styles.projectTitle}>{project.title}</h3>
+            <h3 className={styles.projectTitle}>{project.name}</h3>
 
             <p className={styles.projectDescription}>
-              {project.description}
+              {project.description ?? 'Brak opisu'}
             </p>
 
-            {project.url && (
+            {project.html_url && (
               <a
                 className={styles.projectLink}
-                href={project.url}
+                href={project.html_url}
                 target="_blank"
                 rel="noreferrer"
               >
