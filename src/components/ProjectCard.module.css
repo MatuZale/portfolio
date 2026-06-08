@@ -1,0 +1,32 @@
+.projectCard{
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    background: var(--code-bg);
+    box-shadow: var(--shadow);
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.projectTitle{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.projectDescription{
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.projectLink{
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.projectLink:hover{
+    text-decoration: underline;
+}

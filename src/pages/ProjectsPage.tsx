@@ -1,7 +1,8 @@
 import styles from './ProjectsPage.module.css'
+import ProjectCard from '../components/ProjectCard'
 import { useEffect, useState } from 'react'
 
-interface GitHubRepo {
+export interface GitHubRepo {
   id: number
   name: string
   description: string | null
@@ -42,24 +43,13 @@ function ProjectsPage() {
 
       <div className={styles.projectsContainer}>
         {repos.map((project) => (
-          <div className={styles.projectCard} key={project.id}>
-            <h3 className={styles.projectTitle}>{project.name}</h3>
-
-            <p className={styles.projectDescription}>
-              {project.description ?? 'Brak opisu'}
-            </p>
-
-            {project.html_url && (
-              <a
-                className={styles.projectLink}
-                href={project.html_url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Zobacz projekt
-              </a>
-            )}
-          </div>
+          <ProjectCard
+            key={project.id}
+            name={project.name}
+            description={project.description}
+            html_url={project.html_url}
+            language={project.language}
+          />
         ))}
       </div>
     </main>
