@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import ProjectsPage from './pages/ProjectsPage'
 import ContactPage from './pages/ContactPage'
 import { ThemeContext } from './context/ThemeContext'
+import LoginPage from './pages/LoginPage'
 
 function App() {
   const { isDark } = useContext(ThemeContext)
@@ -13,8 +14,8 @@ function App() {
   return (
     <div className={isDark ? 'dark' : 'light'}>
       <Navbar />
-
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/contact" element={<ContactPage />} />
